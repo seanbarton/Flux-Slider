@@ -381,10 +381,18 @@ window.flux = {
 			// Allow a transition to be picked from ALL available transitions (not just the reduced set)
 	        if(transition == undefined || !flux.transitions[transition])
 	        {
-	            // Pick a transition at random from the (possibly reduced set of) transitions
-	            var index = Math.floor(Math.random()*(this.options.transitions.length));
-	            transition = this.options.transitions[index];
-	        }
+			var image_html = this.images[this.currentImageIndex];
+			var obj = jQuery(image_html);
+			
+			transition = obj.data('transition');
+		
+			if (transition == undefined || !flux.transitions[transition]) {
+				// Pick a transition at random from the (possibly reduced set of) transitions
+				var index = Math.floor(Math.random()*(this.options.transitions.length));
+				transition = this.options.transitions[index];
+			}
+	            
+		}
 			
 			var tran = null;
 
